@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<html xmlns:th="http://www.thymeleaf.org" lang="hr" >
 <head>
     <meta charset="UTF-8">
     <title>Timesheet</title>
@@ -20,11 +20,15 @@
                 <td th:text="${e.employeeName}"></td>
                 <td th:text="${#temporals.format(e.timesheet.timesheetClockInOut.clockIn,'dd.MM.yyyy. HH:mm')}"></td>
                 <td th:text="${#temporals.format(e.timesheet.timesheetClockInOut.clockOut,'dd.MM.yyyy. HH:mm')}"></td>
+                <td><form th:action="@{/timesheet/delete/{id}(id=${e.employeeID})}" method="post">
+                    <button type="submit">Delete?</button>
+                </form></td>
             </tr>
             <tr th:if="${#lists.isEmpty(employees)}">
                 <td colspan="3" class="empty"></td>
             </tr>
         </tbody>
     </table>
+    <button><a th:href="@{/timesheet/new}" style="text-decoration: none;text-decoration-color: black">New timesheet</a></button>
 </body>
 </html>

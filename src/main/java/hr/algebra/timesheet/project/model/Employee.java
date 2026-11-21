@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Employee {
+    private Long employeeID;
     private String employeeName;
     private Timesheet timesheet;
 }

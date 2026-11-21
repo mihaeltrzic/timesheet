@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="hr" >
+<head>
+    <meta charset="UTF-8">
+    <title>Timesheet</title>
+</head>
+
+<body>
+<h1>New timesheet</h1>
+<form method="post" th:action="@{/timesheet/new}" th:object="${employeeForm}">
+    <div class="field">
+        <label for="name">Employee name</label>
+        <input type="text" id="name" th:field="*{name}">
+    </div>
+    <div class="field">
+        <label for="clockIn">Clock in time</label>
+        <input type="datetime-local" id="clockIn" th:field="*{timesheet.timesheetClockInOut.clockIn}">
+    </div>
+    <div class="field">
+        <label for="clockOut">Clock out time</label>
+        <input type="datetime-local" id="clockOut" th:field="*{timesheet.timesheetClockInOut.clockOut}">
+    </div>
+    <button type="submit">New timesheet</button>
+    <a th:href="@{/timesheet/list}">Cancel</a>
+</form>
+</body>
+</html>
