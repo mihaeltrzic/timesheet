@@ -31,6 +31,13 @@ public class MockTimesheetRepository implements TimesheetRepository{
     }
 
     @Override
+    public List<Employee> findFilter(Employee criteria) {
+        return employees.stream()
+                .filter(e->e.getEmployeeName().contains(criteria.getEmployeeName()))
+                .toList();
+    }
+
+    @Override
     public Optional<Employee> findById(Long id) {
         for(Employee employee : employees){
             if(employee.getEmployeeID() == id){

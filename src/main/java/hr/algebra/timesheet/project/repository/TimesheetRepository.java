@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface TimesheetRepository {
 
     List<Employee> findAll();
+    List<Employee> findFilter(Employee criteria);
     Optional<Employee> findById(Long id);
     void addEmployee(Employee employee);
     void deleteEmployee(Employee employee);

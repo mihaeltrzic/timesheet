@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Timesheet</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
     <h1>Timesheets</h1>
+
+    <!--<div th:replace="~{fragments/layout :: toast}"></div>-->
+    <div th:if="${toast}" th:text="${toast}" class="toast"></div>
+
+    <form class="filter" th:action="@{/timesheet/filter}" method="get">
+        <input type="search" name="query" th:value="${query}" placeholder="Search by employee name">
+        <button type="submit">Filter</button>
+    </form>
+
     <table>
         <thead>
             <tr>

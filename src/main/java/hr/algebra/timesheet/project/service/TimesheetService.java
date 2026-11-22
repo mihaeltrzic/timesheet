@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface TimesheetService {
 
     List<EmployeeForm> getEmployees();
+    List<EmployeeForm> filter(EmployeeForm criteria);
     Optional<EmployeeForm> getById(Long id);
     void addEmployee(EmployeeForm employee);
     void deleteEmployee(Long id);

@@ -23,6 +23,14 @@ public class TimesheetServiceImpl implements TimesheetService{
     }
 
     @Override
+    public List<EmployeeForm> filter(EmployeeForm criteria) {
+        return timesheetRepository
+                .findFilter(convertEmployeeFormToEmployee(criteria))
+                .stream().map(e->convertEmployeeToEmployeeForm(e))
+                .toList();
+    }
+
+    @Override
     public Optional<EmployeeForm> getById(Long id) {
         return timesheetRepository.findById(id).map(e->convertEmployeeToEmployeeForm(e));
     }
