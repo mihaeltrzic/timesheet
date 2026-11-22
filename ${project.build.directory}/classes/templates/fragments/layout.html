@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+    <div th:fragment="toast" class="toast" th:if="${toast}" th:text="${toast}"></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="hr" >
+<head>
+    <meta charset="UTF-8">
+    <title>Timesheet</title>
+</head>
+
+<body>
+<h1>New timesheet</h1>
+<form method="post" th:action="@{/timesheet/new}" th:object="${employeeForm}">
+    <input th:field="*{employeeID}" type="hidden">
+    <div class="field">
+        <label for="name">Employee name</label>
+        <input type="text" id="name" th:field="*{employeeName}">
+        <span class="error" th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}">Error</span>
+    </div>
+    <div class="field">
+        <label for="clockIn">Clock in time</label>
+        <input type="datetime-local" id="clockIn" th:field="*{timesheet.timesheetClockInOut.clockIn}">
+        <span class="error" th:if="${#fields.hasErrors('timesheet.timesheetClockInOut.clockIn')}" th:errors="*{timesheet.timesheetClockInOut.clockIn}">Error</span>
+    </div>
+    <div class="field">
+        <label for="clockOut">Clock out time</label>
+        <input type="datetime-local" id="clockOut" th:field="*{timesheet.timesheetClockInOut.clockOut}">
+        <span class="error" th:if="${#fields.hasErrors('timesheet.timesheetClockInOut.clockOut')}" th:errors="*{timesheet.timesheetClockInOut.clockOut}">Error</span>
+    </div>
+    <button type="submit">New timesheet</button>
+    <a th:href="@{/timesheet/list}">Cancel</a>
+</form>
+</body>
+</html>
