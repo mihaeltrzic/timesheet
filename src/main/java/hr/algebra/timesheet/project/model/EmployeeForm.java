@@ -11,7 +11,8 @@ import lombok.Setter;
 @Setter
 public class EmployeeForm {
     //DTO aka records are read only
-    private String name;
+    private Long employeeID;
+    private String employeeName;
     private Timesheet timesheet;
 
 }

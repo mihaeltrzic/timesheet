@@ -36,25 +36,29 @@ public class TimesheetController {
 
     @PostMapping("/new")
     public String TimesheetNew(@ModelAttribute("employeeForm") EmployeeForm form){
-        Employee newEmployee = convertFormToObject(form);
-        timesheetService.addEmployee(newEmployee);
+        timesheetService.addEmployee(form);
         return "redirect:/timesheet/list";
-    }
-
-    private Employee convertFormToObject(EmployeeForm form){
-        Employee newEmployee = new Employee();
-        newEmployee.setEmployeeName(form.getName());
-        newEmployee.setTimesheet(new Timesheet(new TimeEntry(form.getTimesheet().getTimesheetClockInOut().getClockIn(), form.getTimesheet().getTimesheetClockInOut().getClockOut())));
-        return newEmployee;
     }
 
     @PostMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable("id") Long id){
-        Optional<Employee> deleteEmployee = timesheetService.getById(id);
-        if(deleteEmployee.isPresent()){
-            timesheetService.deleteEmployee(deleteEmployee.get());
-        }
+        timesheetService.deleteEmployee(id);
+        //TODO check if it exists
         return "redirect:/timesheet/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editEmployee(Model model, @PathVariable Long id){
+        Optional<EmployeeForm> employeeForm = timesheetService.getById(id);
+        if(employeeForm.isPresent()){
+            EmployeeForm employee = employeeForm.get();
+            model.addAttribute("employeeForm", employee);
+            return "timesheet_new";
+        }
+        else{
+            //TODO display error message
+            return "redirect:/timesheet/list";
+        }
     }
 
 }

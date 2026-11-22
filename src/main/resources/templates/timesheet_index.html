@@ -20,6 +20,9 @@
                 <td th:text="${e.employeeName}"></td>
                 <td th:text="${#temporals.format(e.timesheet.timesheetClockInOut.clockIn,'dd.MM.yyyy. HH:mm')}"></td>
                 <td th:text="${#temporals.format(e.timesheet.timesheetClockInOut.clockOut,'dd.MM.yyyy. HH:mm')}"></td>
+                <td><form th:action="@{/timesheet/edit/{id}(id=${e.employeeID})}">
+                    <button type="submit">Edit</button>
+                </form></td>
                 <td><form th:action="@{/timesheet/delete/{id}(id=${e.employeeID})}" method="post">
                     <button type="submit">Delete?</button>
                 </form></td>

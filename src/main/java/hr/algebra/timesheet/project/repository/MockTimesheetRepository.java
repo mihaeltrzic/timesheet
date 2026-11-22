@@ -42,8 +42,15 @@ public class MockTimesheetRepository implements TimesheetRepository{
 
     @Override
     public void addEmployee(Employee employee) {
-        employee.setEmployeeID(generateNextId());
-        employees.add(employee);
+        if(Optional.ofNullable(employee.getEmployeeID()).isPresent()){
+            Employee employeeUpdate = findById(employee.getEmployeeID()).get();
+            employeeUpdate.setEmployeeName(employee.getEmployeeName());
+            employeeUpdate.setTimesheet(new Timesheet(new TimeEntry(employee.getTimesheet().getTimesheetClockInOut().getClockIn(), employee.getTimesheet().getTimesheetClockInOut().getClockOut())));
+        }
+        else {
+            employee.setEmployeeID(generateNextId());
+            employees.add(employee);
+        }
     }
 
     @Override
